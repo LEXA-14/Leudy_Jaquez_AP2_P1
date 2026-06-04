@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities=[borrameEntity::class],
-    version=0,
+    version=1,
     exportSchema=false
 )
 

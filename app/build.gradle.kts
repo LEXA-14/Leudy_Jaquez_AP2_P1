@@ -86,8 +86,6 @@ dependencies {
     implementation(libs.compose.adaptive)
     implementation(libs.compose.adaptive.layout)
     implementation(libs.compose.adaptive.nav)
-    implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.3.0")
-    implementation("androidx.compose.material3:material3-window-size-class:1.3.0")
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
@@ -95,9 +93,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
-    implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.androidx.compose.material.icons.extended)
 //    implementation(libs.androidx.compose.material.icons.extended)
+    implementation(platform(libs.androidx.compose.bom))
 
 
 }
