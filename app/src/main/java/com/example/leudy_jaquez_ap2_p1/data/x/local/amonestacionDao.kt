@@ -18,6 +18,6 @@ interface amonestacionDao {
     @Query("Select * from Borrame")
     fun observeAll(): Flow<List<amonestacionEntity>>
 
-    @Query("SELECT * FROM Borrame where idAmonestacion=:id")
+    @Query("SELECT * FROM Borrame where amonestacionId=:id")
     suspend fun getById(id:Int): amonestacionEntity?
 }

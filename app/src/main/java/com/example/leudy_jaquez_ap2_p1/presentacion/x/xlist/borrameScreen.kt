@@ -134,15 +134,15 @@ fun BorrameListBody(
                         ) {
                             items(
                                 items = state.listaAmonestacion,
-                                key = { it.idAmonestacion }
+                                key = { it.amonestacionId }
                             ) { borrame ->
                                 borrameItem(
                                     amonestacion = borrame,
                                     onDelete = {
-                                        onEvent(borrameEvent.Delete(borrame.idAmonestacion))
+                                        onEvent(borrameEvent.Delete(borrame.amonestacionId))
                                     },
                                     onEditar = {
-                                        onEvent(borrameEvent.Edit(borrame.idAmonestacion))
+                                        onEvent(borrameEvent.Edit(borrame.amonestacionId))
                                     }
                                 )
                             }
@@ -173,7 +173,7 @@ fun borrameItem(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = amonestacion.idAmonestacion.toString(),
+                    text = amonestacion.amonestacionId.toString(),
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
@@ -182,7 +182,7 @@ fun borrameItem(
             }
             IconButton(
                 onClick = onDelete,
-                modifier = Modifier.testTag("btn_delete_${amonestacion.idAmonestacion}")
+                modifier = Modifier.testTag("btn_delete_${amonestacion.amonestacionId}")
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete, contentDescription = "Eliminar borrame"
