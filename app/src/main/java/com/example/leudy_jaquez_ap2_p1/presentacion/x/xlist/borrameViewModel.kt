@@ -11,6 +11,6 @@ import javax.inject.Inject
 
 class borrameViewModel @Inject constructor(): ViewModel() {
 
-    private val _state= MutableStateFlow(borrameState(true))
-    val state: StateFlow<borrameState> = _state.asStateFlow()
+    private val _state= MutableStateFlow(amonestacionState(true))
+    val state: StateFlow<amonestacionState> = _state.asStateFlow()
 }

@@ -73,11 +73,11 @@ fun borrameListScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BorrameListBody(
-    state: borrameState,
+    state: amonestacionState,
     onEvent: (borrameEvent) -> Unit,
     onAddBorrame: () -> Unit,
 
-) {
+    ) {
     val snackbarHostState = remember { SnackbarHostState() }
     var menuExpanded by remember { mutableStateOf(false) }
 
@@ -196,7 +196,7 @@ fun borrameItem(
 @Composable
 private fun BorrameListBodyPreview() {
     BorrameListBody(
-        state = borrameState(),
+        state = amonestacionState(),
         onEvent = {},
         onAddBorrame = {},
 
