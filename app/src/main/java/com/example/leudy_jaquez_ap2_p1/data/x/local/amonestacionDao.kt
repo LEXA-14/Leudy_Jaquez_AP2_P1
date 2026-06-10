@@ -18,6 +18,9 @@ interface amonestacionDao {
     @Query("Select * from Borrame")
     fun observeAll(): Flow<List<amonestacionEntity>>
 
+    @Query("Delete from borrame where amonestacionId=:id")
+    suspend fun deleteById(id: Int)
+
     @Query("SELECT * FROM Borrame where amonestacionId=:id")
     suspend fun getById(id:Int): amonestacionEntity?
 }

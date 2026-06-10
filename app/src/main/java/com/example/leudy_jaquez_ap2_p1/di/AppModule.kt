@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.leudy_jaquez_ap2_p1.data.x.local.CervezaDB
 import com.example.leudy_jaquez_ap2_p1.data.x.local.amonestacionDao
-import com.example.leudy_jaquez_ap2_p1.data.x.local.repository.borrameRepositoryImpl
+import com.example.leudy_jaquez_ap2_p1.data.x.local.repository.amonestacionRepositoryImpl
 import com.example.leudy_jaquez_ap2_p1.domain.borrame.repository.borrameRepository
 import dagger.Binds
 import dagger.Module
@@ -44,6 +44,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindTaskRepository(
-        impl: borrameRepositoryImpl
+        impl: amonestacionRepositoryImpl
     ): borrameRepository
 }
