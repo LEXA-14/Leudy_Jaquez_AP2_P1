@@ -60,8 +60,8 @@ fun borrameListScreen(
         state = state,
         onEvent = { event ->
             when (event) {
-                is borrameEvent.Edit -> onNavigateToEdit(event.id)
-                is borrameEvent.CreateNew -> onAddBorrame()
+                is amonestacionEvent.Edit -> onNavigateToEdit(event.id)
+                is amonestacionEvent.CreateNew -> onAddBorrame()
                 else -> viewModel.onEvent(event)
             }
         },
@@ -74,7 +74,7 @@ fun borrameListScreen(
 @Composable
 fun BorrameListBody(
     state: amonestacionState,
-    onEvent: (borrameEvent) -> Unit,
+    onEvent: (amonestacionEvent) -> Unit,
     onAddBorrame: () -> Unit,
 
     ) {
@@ -139,10 +139,10 @@ fun BorrameListBody(
                                 borrameItem(
                                     amonestacion = borrame,
                                     onDelete = {
-                                        onEvent(borrameEvent.Delete(borrame.amonestacionId))
+                                        onEvent(amonestacionEvent.Delete(borrame.amonestacionId))
                                     },
                                     onEditar = {
-                                        onEvent(borrameEvent.Edit(borrame.amonestacionId))
+                                        onEvent(amonestacionEvent.Edit(borrame.amonestacionId))
                                     }
                                 )
                             }
