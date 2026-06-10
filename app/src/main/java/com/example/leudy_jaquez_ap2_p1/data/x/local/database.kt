@@ -4,11 +4,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 
 @Database(
-    entities=[borrameEntity::class],
+    entities=[amonestacionEntity::class],
     version=1,
     exportSchema=false
 )
 
 abstract class CervezaDB:RoomDatabase(){
-    abstract fun borrameDao(): borrameDao
+    abstract fun borrameDao(): amonestacionDao
 }

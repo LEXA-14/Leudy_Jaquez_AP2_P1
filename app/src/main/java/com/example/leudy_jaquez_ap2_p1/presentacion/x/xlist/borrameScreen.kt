@@ -44,7 +44,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.leudy_jaquez_ap2_p1.domain.borrame.model.borrame
+import com.example.leudy_jaquez_ap2_p1.domain.borrame.model.amonestacion
 
 
 @Composable
@@ -114,7 +114,7 @@ fun BorrameListBody(
                 )
             } else {
 
-                if (state.listaBorrame.isEmpty()) {
+                if (state.listaAmonestacion.isEmpty()) {
                     Text(
                         text = "No hay borrame",
                         modifier = Modifier
@@ -123,7 +123,7 @@ fun BorrameListBody(
                     )
                 } else {
                     AnimatedVisibility(
-                        visible = state.listaBorrame.isNotEmpty(),
+                        visible = state.listaAmonestacion.isNotEmpty(),
                         enter = fadeIn() + expandVertically(),
                         exit = fadeOut() + shrinkVertically()
                     ) {
@@ -133,16 +133,16 @@ fun BorrameListBody(
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             items(
-                                items = state.listaBorrame,
-                                key = { it.id }
+                                items = state.listaAmonestacion,
+                                key = { it.idAmonestacion }
                             ) { borrame ->
                                 borrameItem(
-                                    borrame = borrame,
+                                    amonestacion = borrame,
                                     onDelete = {
-                                        onEvent(borrameEvent.Delete(borrame.id))
+                                        onEvent(borrameEvent.Delete(borrame.idAmonestacion))
                                     },
                                     onEditar = {
-                                        onEvent(borrameEvent.Edit(borrame.id))
+                                        onEvent(borrameEvent.Edit(borrame.idAmonestacion))
                                     }
                                 )
                             }
@@ -156,7 +156,7 @@ fun BorrameListBody(
 
 @Composable
 fun borrameItem(
-    borrame: borrame,
+    amonestacion: amonestacion,
     onDelete: () -> Unit,
     onEditar: ()-> Unit
 ) {
@@ -173,7 +173,7 @@ fun borrameItem(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = borrame.id.toString(),
+                    text = amonestacion.idAmonestacion.toString(),
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
@@ -182,7 +182,7 @@ fun borrameItem(
             }
             IconButton(
                 onClick = onDelete,
-                modifier = Modifier.testTag("btn_delete_${borrame.id}")
+                modifier = Modifier.testTag("btn_delete_${amonestacion.idAmonestacion}")
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete, contentDescription = "Eliminar borrame"

@@ -3,7 +3,7 @@ package com.example.leudy_jaquez_ap2_p1.di
 import android.content.Context
 import androidx.room.Room
 import com.example.leudy_jaquez_ap2_p1.data.x.local.CervezaDB
-import com.example.leudy_jaquez_ap2_p1.data.x.local.borrameDao
+import com.example.leudy_jaquez_ap2_p1.data.x.local.amonestacionDao
 import com.example.leudy_jaquez_ap2_p1.data.x.local.repository.borrameRepositoryImpl
 import com.example.leudy_jaquez_ap2_p1.domain.borrame.repository.borrameRepository
 import dagger.Binds
@@ -32,7 +32,7 @@ object AppModule{
     }
     @Provides
     @Singleton
-    fun provBorrameDao(database: CervezaDB): borrameDao {
+    fun provBorrameDao(database: CervezaDB): amonestacionDao {
         return database.borrameDao()
     }
 }

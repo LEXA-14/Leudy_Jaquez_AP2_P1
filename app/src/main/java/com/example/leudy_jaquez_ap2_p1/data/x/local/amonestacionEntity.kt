@@ -4,7 +4,10 @@ import androidx.room.PrimaryKey
 import androidx.room.Entity
 
 @Entity(tableName="Borrame")
-data class borrameEntity (
+data class amonestacionEntity (
     @PrimaryKey(autoGenerate=true)
-    val id: Int=0
+    val idAmonestacion: Int=0,
+    val nombres:String,
+    val razon: String,
+    val monto: Double
 )

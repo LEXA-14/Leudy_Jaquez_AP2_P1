@@ -1,24 +1,24 @@
 package com.example.leudy_jaquez_ap2_p1.data.x.local.repository
 
-import com.example.leudy_jaquez_ap2_p1.data.x.local.borrameDao
-import com.example.leudy_jaquez_ap2_p1.domain.borrame.model.borrame
+import com.example.leudy_jaquez_ap2_p1.data.x.local.amonestacionDao
+import com.example.leudy_jaquez_ap2_p1.domain.borrame.model.amonestacion
 import com.example.leudy_jaquez_ap2_p1.domain.borrame.repository.borrameRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
 class borrameRepositoryImpl @Inject constructor(
-    private val localDataSource: borrameDao
+    private val localDataSource: amonestacionDao
 ) : borrameRepository{
-    override fun observeAll(): Flow<List<borrame>> {
+    override fun observeAll(): Flow<List<amonestacion>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getBorrame(id: Int): borrame? {
+    override suspend fun getBorrame(id: Int): amonestacion? {
         TODO("Not yet implemented")
     }
 
-    override suspend fun upsert(borrame: borrame): Int {
+    override suspend fun upsert(amonestacion: amonestacion): Int {
         TODO("Not yet implemented")
     }
 
