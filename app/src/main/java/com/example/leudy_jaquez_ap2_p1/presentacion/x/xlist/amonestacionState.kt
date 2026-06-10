@@ -9,6 +9,4 @@ data class amonestacionState
     val navigateToCreate: Boolean=false,
     val navigateToEdit:Int?=null,
     val message:String?=null
-
-
             )

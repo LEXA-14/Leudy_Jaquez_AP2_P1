@@ -60,8 +60,8 @@ fun borrameListScreen(
         state = state,
         onEvent = { event ->
             when (event) {
-                is amonestacionEvent.Edit -> onNavigateToEdit(event.id)
-                is amonestacionEvent.CreateNew -> onAddBorrame()
+                is amonestacionEvent.edit -> onNavigateToEdit(event.id?:0)
+                is amonestacionEvent.createNew -> onAddBorrame()
                 else -> viewModel.onEvent(event)
             }
         },
@@ -96,7 +96,7 @@ fun BorrameListBody(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Agregar Borrame"
+                    contentDescription = "Agregar Amonestacion"
                 )
             }
         }
@@ -116,7 +116,7 @@ fun BorrameListBody(
 
                 if (state.listaAmonestacion.isEmpty()) {
                     Text(
-                        text = "No hay borrame",
+                        text = "No hay Amonestaciones",
                         modifier = Modifier
                             .align(Alignment.Center),
                         style = MaterialTheme.typography.bodyLarge
@@ -139,10 +139,10 @@ fun BorrameListBody(
                                 borrameItem(
                                     amonestacion = borrame,
                                     onDelete = {
-                                        onEvent(amonestacionEvent.Delete(borrame.amonestacionId))
+                                        onEvent(amonestacionEvent.delete(borrame.amonestacionId))
                                     },
                                     onEditar = {
-                                        onEvent(amonestacionEvent.Edit(borrame.amonestacionId))
+                                        onEvent(amonestacionEvent.edit(borrame.amonestacionId))
                                     }
                                 )
                             }
@@ -172,20 +172,29 @@ fun borrameItem(
             Column(
                 modifier = Modifier.weight(1f)
             ) {
+
                 Text(
-                    text = amonestacion.amonestacionId.toString(),
+                    text = amonestacion.nombres,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Text(
+                    text = amonestacion.razon,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+                Text(
+                    text = amonestacion.monto.toString(),
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
             IconButton(onClick = onEditar) {
-                Icon(imageVector = Icons.Default.Edit, contentDescription = "Editar borrame")
+                Icon(imageVector = Icons.Default.Edit, contentDescription = "Editar amonestacion")
             }
             IconButton(
                 onClick = onDelete,
                 modifier = Modifier.testTag("btn_delete_${amonestacion.amonestacionId}")
             ) {
                 Icon(
-                    imageVector = Icons.Default.Delete, contentDescription = "Eliminar borrame"
+                    imageVector = Icons.Default.Delete, contentDescription = "Eliminar amonestacion"
                 )
             }
         }

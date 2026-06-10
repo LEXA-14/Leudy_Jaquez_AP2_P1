@@ -6,7 +6,7 @@ package com.example.leudy_jaquez_ap2_p1.presentacion.x.xlist
      object clearMessage: amonestacionEvent()
      object createNew: amonestacionEvent()
 
-     data class showMessage(val mensaje: String?)
-     data class edit(val id:Int?)
-     data class delete(val id: Int)
+     data class showMessage(val mensaje: String?): amonestacionEvent()
+     data class edit(val id:Int?): amonestacionEvent()
+     data class delete(val id: Int): amonestacionEvent()
 }

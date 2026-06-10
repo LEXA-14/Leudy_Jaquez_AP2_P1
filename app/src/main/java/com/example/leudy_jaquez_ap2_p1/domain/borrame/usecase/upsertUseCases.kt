@@ -42,8 +42,8 @@ class deleteByIdUseCase @Inject constructor(
     suspend  operator fun invoke(id: Int)=repository.delete(id)
 }
 
-class observeAll @Inject constructor(
+class observeAllUseCase @Inject constructor(
     private val repository: borrameRepository
 ){
-    suspend operator fun invoke()=repository.observeAll()
+    operator fun invoke()=repository.observeAll()
 }
