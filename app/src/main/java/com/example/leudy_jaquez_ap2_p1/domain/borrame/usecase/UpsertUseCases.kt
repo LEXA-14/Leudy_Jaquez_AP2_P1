@@ -7,7 +7,7 @@ import com.example.leudy_jaquez_ap2_p1.domain.borrame.validaciones.validateNombr
 import com.example.leudy_jaquez_ap2_p1.domain.borrame.validaciones.validateRazon
 import javax.inject.Inject
 
-class upsertUseCases @Inject constructor(
+class UpsertUseCases @Inject constructor(
     private val repository: borrameRepository
 ){
     suspend operator fun invoke(amonestacion: amonestacion): Result<Int>{
@@ -30,19 +30,19 @@ class upsertUseCases @Inject constructor(
 }
 
 
-class getByIdUseCase @Inject constructor(
+class GetByIdUseCase @Inject constructor(
     private val repository: borrameRepository
 ){
     suspend operator fun invoke(id: Int)=repository.getBorrame(id)
 }
 
-class deleteByIdUseCase @Inject constructor(
+class DeleteByIdUseCase @Inject constructor(
     private val repository: borrameRepository
 ){
     suspend  operator fun invoke(id: Int)=repository.delete(id)
 }
 
-class observeAllUseCase @Inject constructor(
+class ObserveAllUseCase @Inject constructor(
     private val repository: borrameRepository
 ){
     operator fun invoke()=repository.observeAll()
