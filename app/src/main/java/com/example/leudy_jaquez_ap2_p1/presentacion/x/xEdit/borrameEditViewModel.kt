@@ -12,6 +12,7 @@ import com.example.leudy_jaquez_ap2_p1.domain.borrame.validaciones.validateMonto
 import com.example.leudy_jaquez_ap2_p1.domain.borrame.validaciones.validateNombre
 import com.example.leudy_jaquez_ap2_p1.domain.borrame.validaciones.validateRazon
 import com.example.leudy_jaquez_ap2_p1.navegacion.screen
+import androidx.hilt.navigation.compose.hiltViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -67,7 +68,7 @@ ViewModel(){
                 viewModelScope.launch {
                     _state.update {
                         it.copy(
-                            saved = true,
+                            isNew = false,
                             idAmonestacion = id,
                             nombre = amonestacion.nombres,
                             razon = amonestacion.razon,

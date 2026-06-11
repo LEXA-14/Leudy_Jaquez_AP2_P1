@@ -13,7 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.leudy_jaquez_ap2_p1.navegacion.BorrameNavHost
 import com.example.leudy_jaquez_ap2_p1.ui.theme.Leudy_Jaquez_AP2_P1Theme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

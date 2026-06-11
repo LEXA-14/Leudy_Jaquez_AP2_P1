@@ -33,6 +33,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,6 +56,12 @@ fun borrameListScreen(
 
 ){
     val state by viewModel.state.collectAsStateWithLifecycle()
+    LaunchedEffect(state.navigateToEdit) {
+        state.navigateToEdit?.let { id ->
+            onNavigateToEdit(id)
+            viewModel.onEvent(amonestacionEvent.edit(null))
+        }
+    }
 
     BorrameListBody(
         state = state,
@@ -133,9 +140,9 @@ fun BorrameListBody(
                             ) { borrame ->
                                 borrameItem(
                                     amonestacion = borrame,
-                                    onDelete = {
-                                        onEvent(amonestacionEvent.delete(borrame.amonestacionId))
-                                    },
+//                                    onDelete = {
+//                                        onEvent(amonestacionEvent.delete(borrame.amonestacionId))
+//                                    },
                                     onEditar = {
                                         onEvent(amonestacionEvent.edit(borrame.amonestacionId))
                                     },
@@ -154,7 +161,7 @@ fun BorrameListBody(
 @Composable
 fun borrameItem(
     amonestacion: amonestacion,
-    onDelete: () -> Unit,
+
     onEditar: ()-> Unit,
 
 ) {
@@ -188,14 +195,14 @@ fun borrameItem(
             IconButton(onClick = onEditar) {
                 Icon(imageVector = Icons.Default.Edit, contentDescription = "Editar amonestacion")
             }
-            IconButton(
-                onClick = onDelete,
-                modifier = Modifier.testTag("btn_delete_${amonestacion.amonestacionId}")
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Delete, contentDescription = "Eliminar amonestacion"
-                )
-            }
+//            IconButton(
+//                onClick = onDelete,
+//                modifier = Modifier.testTag("btn_delete_${amonestacion.amonestacionId}")
+//            ) {
+//                Icon(
+//                    imageVector = Icons.Default.Delete, contentDescription = "Eliminar amonestacion"
+//                )
+//            }
         }
     }
 }

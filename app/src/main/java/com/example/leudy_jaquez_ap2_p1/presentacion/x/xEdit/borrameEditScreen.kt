@@ -32,7 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -75,7 +75,7 @@ fun borrameEditScreen (
             state.nombre?.let {
                 OutlinedTextField(
                     value = it,
-                    onValueChange = {{viewModel.onEvent(borrameEditEvent.nombreChanged(it))}},
+                    onValueChange = {viewModel.onEvent(borrameEditEvent.nombreChanged(it))},
                     label = { Text("Nombres:") },
                     modifier = Modifier.fillMaxWidth(),
                     isError = state.nombreError != null,
@@ -87,7 +87,7 @@ fun borrameEditScreen (
             state.razon?.let {
                 OutlinedTextField(
                     value = it,
-                    onValueChange = {{viewModel.onEvent(borrameEditEvent.razonChanged(it))}},
+                    onValueChange = {viewModel.onEvent(borrameEditEvent.razonChanged(it))},
                     label = { Text("Razon:") },
                     modifier = Modifier.fillMaxWidth(),
 
@@ -100,7 +100,7 @@ fun borrameEditScreen (
             state.monto?.let {
                 OutlinedTextField(
                     value = it,
-                    onValueChange = {{viewModel.onEvent(borrameEditEvent.montoChanged(it))}},
+                    onValueChange = {viewModel.onEvent(borrameEditEvent.montoChanged(it))},
                     label = { Text("Monto:") },
                     modifier = Modifier.fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),

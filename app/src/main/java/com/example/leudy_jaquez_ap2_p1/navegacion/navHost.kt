@@ -35,7 +35,7 @@ fun BorrameNavHost(
             borrameEditScreen(
 
                 onBack = {
-                    navController.navigate(screen.borrameList)
+                    navController.popBackStack()
                 }
             )
         }
