@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -83,17 +85,18 @@ fun BorrameListBody(
     var menuExpanded by remember { mutableStateOf(false) }
 
     Scaffold(
-        snackbarHost={SnackbarHost(snackbarHostState)},
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("Amonestacion") },
 
-            )
+                )
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    onAddBorrame() },
+                    onAddBorrame()
+                },
                 modifier = Modifier.testTag("fab_add")
             ) {
                 Icon(
@@ -103,7 +106,7 @@ fun BorrameListBody(
             }
         }
     ) { padding ->
-        Box(
+        Column (
             modifier = Modifier
                 .padding(padding)
                 .padding(8.dp)
@@ -111,7 +114,7 @@ fun BorrameListBody(
             if (state.isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier
-                        .align(Alignment.Center)
+                        .align(Alignment.CenterHorizontally)
                         .testTag("loading")
                 )
             } else {
@@ -120,17 +123,18 @@ fun BorrameListBody(
                     Text(
                         text = "No hay Amonestaciones",
                         modifier = Modifier
-                            .align(Alignment.Center),
+                            .align(Alignment.CenterHorizontally),
                         style = MaterialTheme.typography.bodyLarge
                     )
                 } else {
                     AnimatedVisibility(
                         visible = state.listaAmonestacion.isNotEmpty(),
                         enter = fadeIn() + expandVertically(),
-                        exit = fadeOut() + shrinkVertically()
+                        exit = fadeOut() + shrinkVertically(),
+
                     ) {
                         LazyColumn(
-                            modifier = Modifier.fillMaxSize(),
+                            modifier = Modifier.fillMaxSize(0.9f),
                             contentPadding = PaddingValues(16.dp),
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
@@ -147,16 +151,34 @@ fun BorrameListBody(
                                         onEvent(amonestacionEvent.edit(borrame.amonestacionId))
                                     },
 
-
-                                )
+                                    )
                             }
                         }
+                    }
+                    Spacer(modifier = Modifier.weight(1f))
+                    }
+                    HorizontalDivider()
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Total: ${state.listaAmonestacion.size} amonestaciones",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            text = "Suma: ${"%.2f".format(state.listaAmonestacion.sumOf { it.monto })}",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
                     }
                 }
             }
         }
     }
-}
+
+
 
 @Composable
 fun borrameItem(
