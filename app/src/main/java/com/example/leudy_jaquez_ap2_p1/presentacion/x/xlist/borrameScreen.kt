@@ -58,13 +58,7 @@ fun borrameListScreen(
 
     BorrameListBody(
         state = state,
-        onEvent = { event ->
-            when (event) {
-                is amonestacionEvent.edit -> onNavigateToEdit(event.id?:0)
-                is amonestacionEvent.createNew -> onAddBorrame()
-                else -> viewModel.onEvent(event)
-            }
-        },
+        onEvent =  viewModel::onEvent,
         onAddBorrame= onAddBorrame
 
     )
@@ -85,13 +79,14 @@ fun BorrameListBody(
         snackbarHost={SnackbarHost(snackbarHostState)},
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Borrame") },
+                title = { Text("Amonestacion") },
 
             )
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = onAddBorrame,
+                onClick = {
+                    onAddBorrame() },
                 modifier = Modifier.testTag("fab_add")
             ) {
                 Icon(
@@ -143,7 +138,9 @@ fun BorrameListBody(
                                     },
                                     onEditar = {
                                         onEvent(amonestacionEvent.edit(borrame.amonestacionId))
-                                    }
+                                    },
+
+
                                 )
                             }
                         }
@@ -158,14 +155,16 @@ fun BorrameListBody(
 fun borrameItem(
     amonestacion: amonestacion,
     onDelete: () -> Unit,
-    onEditar: ()-> Unit
+    onEditar: ()-> Unit,
+
 ) {
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),
 
         ) {
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

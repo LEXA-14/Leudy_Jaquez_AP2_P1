@@ -2,8 +2,9 @@ package com.example.leudy_jaquez_ap2_p1.presentacion.x.xlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.leudy_jaquez_ap2_p1.domain.borrame.usecase.deleteByIdUseCase
-import com.example.leudy_jaquez_ap2_p1.domain.borrame.usecase.observeAllUseCase
+import com.example.leudy_jaquez_ap2_p1.domain.borrame.usecase.DeleteByIdUseCase
+import com.example.leudy_jaquez_ap2_p1.domain.borrame.usecase.ObserveAllUseCase
+
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 
 class borrameViewModel @Inject constructor(
-    private val observeAllUseCase: observeAllUseCase,
-    private val deleteByIdUseCase: deleteByIdUseCase
+    private val observeAllUseCase: ObserveAllUseCase,
+    private val deleteByIdUseCase: DeleteByIdUseCase
 ): ViewModel() {
 
     private val _state= MutableStateFlow(amonestacionState(true))
@@ -43,6 +44,7 @@ class borrameViewModel @Inject constructor(
 
        fun load(){
            viewModelScope.launch {
+               _state.update { it.copy(isLoading = true) }
                observeAllUseCase().collectLatest { list->_state.update { it.copy(isLoading = false, listaAmonestacion = list) }}
            }
     }

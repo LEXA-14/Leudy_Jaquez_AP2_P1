@@ -23,8 +23,8 @@ fun BorrameNavHost(
                 onAddBorrame ={
                     navController.navigate(screen.borrameForm(id=0))
                 },
-                onNavigateToEdit ={
-                    id->navController.navigate(screen.borrameForm(id))
+                onNavigateToEdit ={ id ->
+                    navController.navigate(screen.borrameForm(id))
                 },
 
 
